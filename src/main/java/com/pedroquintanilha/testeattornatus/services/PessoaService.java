@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.pedroquintanilha.testeattornatus.entities.Pessoa;
 import com.pedroquintanilha.testeattornatus.repositories.PessoaRepository;
+import com.pedroquintanilha.testeattornatus.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class PessoaService {
@@ -21,7 +22,7 @@ public class PessoaService {
 	
 	public Pessoa findById(Long id) {
 		Optional<Pessoa> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new IllegalArgumentException());
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
 	public Pessoa insert(Pessoa obj) {
