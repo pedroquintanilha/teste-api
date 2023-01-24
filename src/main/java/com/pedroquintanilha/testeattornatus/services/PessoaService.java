@@ -23,4 +23,8 @@ public class PessoaService {
 		Optional<Pessoa> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new IllegalArgumentException());
 	}
+
+	public Pessoa insert(Pessoa obj) {
+		return repository.save(obj);
+	}
 }
