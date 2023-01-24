@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Endereco implements Serializable {
@@ -22,6 +24,7 @@ public class Endereco implements Serializable {
 	private Integer numero;
 	private String cidade;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "pessoa_id")
 	private Pessoa pessoa;

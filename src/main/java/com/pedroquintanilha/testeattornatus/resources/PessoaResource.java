@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.pedroquintanilha.testeattornatus.entities.Endereco;
 import com.pedroquintanilha.testeattornatus.entities.Pessoa;
 import com.pedroquintanilha.testeattornatus.services.PessoaService;
 
@@ -49,6 +51,12 @@ public class PessoaResource {
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj); 
 	}
+	
+	@GetMapping(value="/{id}/enderecos")
+	public ResponseEntity<List<Endereco>> findPosts(@PathVariable Long id) {
+		Pessoa obj = service.findById(id);
+		return ResponseEntity.ok().body(obj.getEnderecos());	 
+	}  
 	
 
 	
