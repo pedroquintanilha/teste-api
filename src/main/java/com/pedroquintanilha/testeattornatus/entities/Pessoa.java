@@ -1,14 +1,18 @@
 package com.pedroquintanilha.testeattornatus.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -20,8 +24,17 @@ public class Pessoa implements Serializable {
 	private Long id;
 	private String nome;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(shape = JsonFormat.Shape.STRING,  pattern = "dd/MM/yyyy")
 	private Date dataDeNascimento;
+	
+	/* 
+	JsonIgnore para caso listar pessoas não envolva listar os endereços automaticamente
+	isso pode evitar futuros problemas de tráfego caso tenhamos muitas pessoas
+	com muitos endereços cada uma
+	*/  
+	@JsonIgnore
+	@OneToMany(mappedBy = "pessoa")
+	private List<Endereco> enderecos = new ArrayList<>();
 	
 	public Pessoa() {
 	}
@@ -56,6 +69,10 @@ public class Pessoa implements Serializable {
 	public void setDataDeNascimento(Date dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
 	}
+	
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
 
 	@Override
 	public int hashCode() {
@@ -81,6 +98,8 @@ public class Pessoa implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 	
 	
 
