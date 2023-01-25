@@ -28,10 +28,10 @@ public class Pessoa implements Serializable {
 	private Date dataDeNascimento;
 	
 	/* 
-	JsonIgnore para caso listar pessoas não envolva listar os endereços automaticamente
-	isso pode evitar futuros problemas de tráfego caso tenhamos muitas pessoas
-	com muitos endereços cada uma
-	*/  
+	 * JsonIgnore para caso listar pessoas não envolva listar os endereços automaticamente
+	 * isso pode evitar futuros problemas de tráfego caso tenhamos muitas pessoas
+	 * com muitos endereços cada uma.
+	 */  
 	@JsonIgnore
 	@OneToMany(mappedBy = "pessoa")
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -98,9 +98,5 @@ public class Pessoa implements Serializable {
 			return false;
 		return true;
 	}
-
-	
-	
-	
 
 }

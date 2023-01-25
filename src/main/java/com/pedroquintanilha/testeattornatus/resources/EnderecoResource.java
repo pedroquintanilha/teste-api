@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -33,7 +34,7 @@ public class EnderecoResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
-	//Criei este método para poder utilizar a URI gerada no PostMapping
+	//Método para poder utilizar a URI gerada no PostMapping.
 	@GetMapping(value = "/{id_pessoa}/{id}")
 	public ResponseEntity<Endereco> findById(@PathVariable Long id) {
 		Endereco obj = service.findById(id);
@@ -50,5 +51,15 @@ public class EnderecoResource {
 		return ResponseEntity.created(uri).body(obj);
 	}
 	
-
+	/*
+	 * Considerando que o endereço principal sempre estará constando no logradouro
+	 * através da palavra "principal", e que cada Pessoa só pode ter um endereço principal,
+	 * tendo sempre pelo menos um.
+	 */ 
+	@GetMapping(value="/{id_pessoa}/logradouro")
+	public ResponseEntity<Endereco> findEnderecoPrincipal(@PathVariable Long id_pessoa, @RequestParam(value="text", defaultValue = "") String text) {
+		Endereco obj = service.findEnderecoPrincipal(text, id_pessoa);
+		return ResponseEntity.ok().body(obj);	
+	}
+	
 }

@@ -26,7 +26,6 @@ public class PessoaResource {
 	@Autowired
 	private PessoaService service;
 	
-	
 	@GetMapping
 	public ResponseEntity<List<Pessoa>> findAll() {
 		List<Pessoa> list = service.findAll();
@@ -58,8 +57,5 @@ public class PessoaResource {
 		Pessoa obj = service.findById(id);
 		return ResponseEntity.ok().body(obj.getEnderecos());	 
 	} 
-	
-	
-
 	
 }

@@ -2,13 +2,11 @@ package com.pedroquintanilha.testeattornatus.dto;
 
 import java.io.Serializable;
 
-
 import com.pedroquintanilha.testeattornatus.entities.Endereco;
 import com.pedroquintanilha.testeattornatus.entities.Pessoa;
 
 public class EnderecoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
 	
 	private Long id;
 	private String logradouro;
