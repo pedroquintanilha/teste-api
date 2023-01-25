@@ -1,6 +1,6 @@
 # Sobre o projeto
 
-Foi desenvolvida uma API com Spring Boot para gerenciar Pessoas. A API deveria permitir:
+Foi desenvolvida uma API com Spring Boot para gerenciar Pessoas. A API permite:
 
 - Criar uma pessoa
 - Editar uma pessoa
