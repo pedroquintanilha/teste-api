@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.pedroquintanilha.testeattornatus.dto.EnderecoDTO;
 import com.pedroquintanilha.testeattornatus.entities.Endereco;
+
 import com.pedroquintanilha.testeattornatus.services.EnderecoService;
 
 @RestController
@@ -30,6 +31,13 @@ public class EnderecoResource {
 	public ResponseEntity<List<Endereco>> findAll() {
 		List<Endereco> list = service.findAll();
 		return ResponseEntity.ok().body(list);
+	}
+	
+	//Criei este método para poder utilizar a URI gerada no PostMapping
+	@GetMapping(value = "/{id_pessoa}/{id}")
+	public ResponseEntity<Endereco> findById(@PathVariable Long id) {
+		Endereco obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
 	}
 	
 	
